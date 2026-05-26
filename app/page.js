@@ -723,7 +723,7 @@ export default function Home() {
       id="calendar-note-screen"
       className={`${
         darkMode ? "dark" : ""
-      } min-h-screen overflow-x-hidden bg-gradient-to-br from-pink-50 via-violet-50 to-cyan-50 px-4 py-4 text-[13px] text-slate-800 transition-colors duration-500 dark:from-slate-950 dark:via-slate-950 dark:to-indigo-950 dark:text-slate-100 sm:px-6 sm:py-6`}
+      } h-[100dvh] overflow-hidden bg-gradient-to-br from-pink-50 via-violet-50 to-cyan-50 px-4 py-4 text-[13px] text-slate-800 transition-colors duration-500 dark:from-slate-950 dark:via-slate-950 dark:to-indigo-950 dark:text-slate-100 sm:px-6 sm:py-6`}
     >
       <style>{`
         #calendar-note-screen,
@@ -784,10 +784,10 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[460px] items-center justify-center sm:min-h-[calc(100vh-3rem)]">
+      <section className="mx-auto flex h-full max-h-full w-full max-w-[460px] items-center justify-center">
         <div className="phone-shadow relative w-full max-w-[430px] rounded-[2.85rem] border border-slate-300/80 bg-slate-950/90 p-2.5 shadow-2xl shadow-slate-300/50 backdrop-blur dark:border-slate-700/80 dark:bg-slate-950 dark:shadow-black/40">
-          <div className="relative h-[min(860px,calc(100vh-2rem))] min-h-[720px] overflow-hidden rounded-[2.35rem] border border-white/80 bg-[#fff9fd] transition-colors duration-500 dark:border-white/10 dark:bg-[#121526] sm:h-[min(860px,calc(100vh-3rem))]">
-            <div className="soft-scrollbar h-full overflow-y-auto pb-32">
+          <div className="relative h-[calc(100dvh-3.25rem)] min-h-0 overflow-hidden rounded-[2.35rem] border border-white/80 bg-[#fff9fd] transition-colors duration-500 dark:border-white/10 dark:bg-[#121526] sm:h-[min(860px,calc(100dvh-4.25rem))]">
+            <div className="soft-scrollbar phone-scroll h-full overflow-y-auto pb-32">
               <div className="sticky top-0 z-30 rounded-t-[2.35rem] border-b border-slate-900/5 bg-[#fff9fd]/90 px-5 pb-3 pt-4 backdrop-blur-xl dark:border-white/10 dark:bg-[#121526]/90">
                 <div className="mx-auto mb-3 h-1 w-20 rounded-full bg-slate-900/80 dark:bg-white/80" />
 
