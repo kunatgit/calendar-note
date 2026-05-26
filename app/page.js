@@ -723,12 +723,48 @@ export default function Home() {
       id="calendar-note-screen"
       className={`${
         darkMode ? "dark" : ""
-      } h-[100dvh] overflow-hidden bg-gradient-to-br from-pink-50 via-violet-50 to-cyan-50 px-4 py-4 text-[13px] text-slate-800 transition-colors duration-500 dark:from-slate-950 dark:via-slate-950 dark:to-indigo-950 dark:text-slate-100 sm:px-6 sm:py-6`}
+      } min-h-screen overflow-x-hidden bg-gradient-to-br from-pink-50 via-violet-50 to-cyan-50 px-4 py-4 text-[13px] text-slate-800 transition-colors duration-500 dark:from-slate-950 dark:via-slate-950 dark:to-indigo-950 dark:text-slate-100 sm:px-6 sm:py-6`}
     >
       <style>{`
         #calendar-note-screen,
         #calendar-note-screen * {
           cursor: pointer !important;
+        }
+
+        @media (max-width: 640px) {
+          #calendar-note-screen .calendar-form-card input,
+          #calendar-note-screen .calendar-form-card textarea,
+          #calendar-note-screen .calendar-form-card select {
+            font-size: 12.5px !important;
+            line-height: 1.45 !important;
+          }
+
+          #calendar-note-screen .calendar-form-card input::placeholder,
+          #calendar-note-screen .calendar-form-card textarea::placeholder {
+            font-size: 12.5px !important;
+          }
+
+          #calendar-note-screen .calendar-form-card select,
+          #calendar-note-screen .calendar-form-card input:not([type="file"]) {
+            min-height: 44px;
+          }
+
+          #calendar-note-screen .calendar-form-card textarea {
+            min-height: 132px;
+          }
+
+          #calendar-note-screen .calendar-form-card .form-card-title {
+            font-size: 15px !important;
+            line-height: 1.35 !important;
+          }
+
+          #calendar-note-screen .calendar-form-card .form-label {
+            font-size: 11.5px !important;
+          }
+
+          #calendar-note-screen .calendar-form-card .form-button {
+            font-size: 12px !important;
+          }
         }
 
         @keyframes cute-pop {
@@ -784,10 +820,10 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="mx-auto flex h-full max-h-full w-full max-w-[460px] items-center justify-center">
+      <section className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[460px] items-center justify-center sm:min-h-[calc(100vh-3rem)]">
         <div className="phone-shadow relative w-full max-w-[430px] rounded-[2.85rem] border border-slate-300/80 bg-slate-950/90 p-2.5 shadow-2xl shadow-slate-300/50 backdrop-blur dark:border-slate-700/80 dark:bg-slate-950 dark:shadow-black/40">
-          <div className="relative h-[calc(100dvh-3.25rem)] min-h-0 overflow-hidden rounded-[2.35rem] border border-white/80 bg-[#fff9fd] transition-colors duration-500 dark:border-white/10 dark:bg-[#121526] sm:h-[min(860px,calc(100dvh-4.25rem))]">
-            <div className="soft-scrollbar phone-scroll h-full overflow-y-auto pb-32">
+          <div className="relative h-[min(860px,calc(100vh-2rem))] min-h-[720px] overflow-hidden rounded-[2.35rem] border border-white/80 bg-[#fff9fd] transition-colors duration-500 dark:border-white/10 dark:bg-[#121526] sm:h-[min(860px,calc(100vh-3rem))]">
+            <div className="soft-scrollbar h-full overflow-y-auto pb-32">
               <div className="sticky top-0 z-30 rounded-t-[2.35rem] border-b border-slate-900/5 bg-[#fff9fd]/90 px-5 pb-3 pt-4 backdrop-blur-xl dark:border-white/10 dark:bg-[#121526]/90">
                 <div className="mx-auto mb-3 h-1 w-20 rounded-full bg-slate-900/80 dark:bg-white/80" />
 
@@ -841,14 +877,14 @@ export default function Home() {
               </div>
 
               <div className="px-5 py-5">
-                <div className="rounded-[2rem] border border-white bg-white/85 p-4 shadow-sm dark:border-white/10 dark:bg-white/[0.07]">
+                <div className="calendar-form-card rounded-[2rem] border border-white bg-white/85 p-4 shadow-sm dark:border-white/10 dark:bg-white/[0.07]">
                   <div className="mb-4 flex items-center justify-between gap-3">
                     <div>
                       <p className="text-[12px] text-slate-500 dark:text-slate-300">
                         ฟอร์มนัดหมาย
                       </p>
 
-                      <h3 className="text-[16px] font-semibold text-slate-900 dark:text-white">
+                      <h3 className="form-card-title text-[16px] font-semibold text-slate-900 dark:text-white">
                         กรอกข้อมูล Event
                       </h3>
                     </div>
@@ -859,7 +895,7 @@ export default function Home() {
                   </div>
 
                   <label className="mb-3 block">
-                    <span className="mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
+                    <span className="form-label mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                       Template
                     </span>
 
@@ -877,7 +913,7 @@ export default function Home() {
                   </label>
 
                   <label className="mb-3 block">
-                    <span className="mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
+                    <span className="form-label mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                       ชื่อ
                     </span>
 
@@ -892,7 +928,7 @@ export default function Home() {
                   </label>
 
                   <label className="mb-3 block">
-                    <span className="mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
+                    <span className="form-label mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                       รายละเอียด
                     </span>
 
@@ -908,7 +944,7 @@ export default function Home() {
                   </label>
 
                   <div className="mb-3 rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900/80">
-                    <span className="mb-2 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
+                    <span className="form-label mb-2 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                       อีเมล invite หลายคน
                     </span>
 
@@ -930,7 +966,7 @@ export default function Home() {
                       <button
                         type="button"
                         onClick={addEmailsFromDraft}
-                        className="rounded-xl bg-violet-100 px-3 py-2 text-[12px] font-medium text-violet-700 transition hover:bg-violet-200 dark:bg-violet-400/15 dark:text-violet-100"
+                        className="form-button rounded-xl bg-violet-100 px-3 py-2 text-[12px] font-medium text-violet-700 transition hover:bg-violet-200 dark:bg-violet-400/15 dark:text-violet-100"
                       >
                         เพิ่ม
                       </button>
@@ -955,7 +991,7 @@ export default function Home() {
 
                   <div className="mb-3 grid gap-3 sm:grid-cols-2">
                     <label className="block">
-                      <span className="mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
+                      <span className="form-label mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                         วันเวลาที่เริ่ม
                       </span>
 
@@ -984,7 +1020,7 @@ export default function Home() {
                     </label>
 
                     <label className="block">
-                      <span className="mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
+                      <span className="form-label mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                         วันเวลาสิ้นสุด
                       </span>
 
@@ -1002,7 +1038,7 @@ export default function Home() {
                   <div className="mb-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50/70 p-3 dark:border-white/15 dark:bg-white/[0.04]">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <span className="block text-[12px] font-medium text-slate-600 dark:text-slate-300">
+                        <span className="form-label block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                           แนบไฟล์
                         </span>
 
@@ -1011,7 +1047,7 @@ export default function Home() {
                         </p>
                       </div>
 
-                      <label className="rounded-2xl bg-slate-900 px-3 py-2 text-[12px] font-medium text-white transition hover:-translate-y-0.5 hover:shadow-md dark:bg-white dark:text-slate-950">
+                      <label className="form-button rounded-2xl bg-slate-900 px-3 py-2 text-[12px] font-medium text-white transition hover:-translate-y-0.5 hover:shadow-md dark:bg-white dark:text-slate-950">
                         เลือกไฟล์
                         <input
                           key={fileInputKey}
@@ -1044,7 +1080,7 @@ export default function Home() {
                             <button
                               type="button"
                               onClick={() => removeFile(index)}
-                              className="rounded-full bg-red-50 px-2 py-1 text-[11px] text-red-500 dark:bg-red-400/15 dark:text-red-100"
+                              className="form-button rounded-full bg-red-50 px-2 py-1 text-[11px] text-red-500 dark:bg-red-400/15 dark:text-red-100"
                             >
                               ลบ
                             </button>
@@ -1058,7 +1094,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={addItem}
-                      className="rounded-2xl bg-white px-4 py-3 text-[13px] font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-md dark:bg-white/10 dark:text-white dark:ring-white/10"
+                      className="form-button rounded-2xl bg-white px-4 py-3 text-[13px] font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-md dark:bg-white/10 dark:text-white dark:ring-white/10"
                     >
                       + เพิ่มรายการเข้าคิว
                     </button>
@@ -1066,7 +1102,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={clearForm}
-                      className="rounded-2xl bg-slate-100 px-4 py-3 text-[13px] font-medium text-slate-500 transition hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300"
+                      className="form-button rounded-2xl bg-slate-100 px-4 py-3 text-[13px] font-medium text-slate-500 transition hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300"
                     >
                       ล้าง
                     </button>
