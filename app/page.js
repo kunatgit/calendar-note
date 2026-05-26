@@ -72,7 +72,7 @@ const formatDateInput = (date) => {
   const pad = (number) => String(number).padStart(2, "0");
 
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
-    date.getDate()
+    date.getDate(),
   )}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
 };
 
@@ -115,8 +115,7 @@ const createDefaultForm = () => {
   };
 };
 
-const isValidEmail = (email) =>
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
 const fileSizeLabel = (bytes) => {
   if (bytes < 1024) return `${bytes} B`;
@@ -177,7 +176,7 @@ export default function Home() {
   useEffect(() => {
     window.localStorage.setItem(
       "calendar-note-theme",
-      darkMode ? "dark" : "light"
+      darkMode ? "dark" : "light",
     );
   }, [darkMode]);
 
@@ -244,12 +243,12 @@ export default function Home() {
     const today = new Date();
     const startDateTime = combineDateAndTime(
       today,
-      selected.startTime || "09:00"
+      selected.startTime || "09:00",
     );
 
     const rawEndDateTime = combineDateAndTime(
       today,
-      selected.endTime || "10:00"
+      selected.endTime || "10:00",
     );
 
     const endDateTime =
@@ -289,7 +288,7 @@ export default function Home() {
       eventData: {
         ...eventData,
         inviteEmails: Array.from(
-          new Set([...eventData.inviteEmails, ...rawEmails])
+          new Set([...eventData.inviteEmails, ...rawEmails]),
         ),
       },
       error: "",
@@ -320,7 +319,9 @@ export default function Home() {
 
     setForm((current) => ({
       ...current,
-      inviteEmails: Array.from(new Set([...current.inviteEmails, ...rawEmails])),
+      inviteEmails: Array.from(
+        new Set([...current.inviteEmails, ...rawEmails]),
+      ),
     }));
 
     setEmailDraft("");
@@ -366,7 +367,7 @@ export default function Home() {
     }
 
     const invalidEmails = eventData.inviteEmails.filter(
-      (email) => !isValidEmail(email)
+      (email) => !isValidEmail(email),
     );
 
     if (invalidEmails.length) {
@@ -464,7 +465,9 @@ export default function Home() {
     return new Promise((resolve, reject) => {
       if (!clientId) {
         reject(
-          new Error("ยังไม่ได้ตั้งค่า NEXT_PUBLIC_GOOGLE_CLIENT_ID ในไฟล์ .env.local")
+          new Error(
+            "ยังไม่ได้ตั้งค่า NEXT_PUBLIC_GOOGLE_CLIENT_ID ในไฟล์ .env.local",
+          ),
         );
         return;
       }
@@ -514,7 +517,7 @@ export default function Home() {
         fileBuffer,
         closeDelimiter,
       ],
-      { type: `multipart/related; boundary=${boundary}` }
+      { type: `multipart/related; boundary=${boundary}` },
     );
 
     const response = await fetch(
@@ -525,13 +528,15 @@ export default function Home() {
           Authorization: `Bearer ${token}`,
         },
         body: multipartBody,
-      }
+      },
     );
 
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error?.message || `อัปโหลดไฟล์ ${file.name} ไม่สำเร็จ`);
+      throw new Error(
+        data.error?.message || `อัปโหลดไฟล์ ${file.name} ไม่สำเร็จ`,
+      );
     }
 
     return data;
@@ -571,7 +576,7 @@ export default function Home() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(eventBody),
-      }
+      },
     );
 
     const data = await response.json();
@@ -642,7 +647,7 @@ export default function Home() {
 
       const totalSteps = eventsToSave.reduce(
         (sum, item) => sum + item.files.length + 1,
-        0
+        0,
       );
 
       let completedSteps = 0;
@@ -676,7 +681,7 @@ export default function Home() {
 
         completedSteps += 1;
         setProgress(
-          Math.max(8, Math.round((completedSteps / totalSteps) * 100))
+          Math.max(8, Math.round((completedSteps / totalSteps) * 100)),
         );
       }
 
@@ -869,8 +874,8 @@ export default function Home() {
                         isSaving
                           ? "pulse-dot bg-violet-400"
                           : isConnected
-                          ? "bg-emerald-400"
-                          : "bg-amber-300"
+                            ? "bg-emerald-400"
+                            : "bg-amber-300"
                       }`}
                     />
                     <span className="truncate">{statusText}</span>
@@ -911,7 +916,10 @@ export default function Home() {
                       className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-3 text-[13px] outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-slate-900/80 dark:focus:ring-violet-400/15"
                     >
                       {templates.map((template) => (
-                        <option key={template.id || "empty"} value={template.id}>
+                        <option
+                          key={template.id || "empty"}
+                          value={template.id}
+                        >
                           {template.label}
                         </option>
                       ))}
@@ -995,8 +1003,8 @@ export default function Home() {
                     )}
                   </div>
 
-                  <div className="mb-3 grid gap-3 sm:grid-cols-2">
-                    <label className="block">
+                  <div className="mb-3 grid min-w-0 grid-cols-1 gap-3">
+                    <label className="block min-w-0">
                       <span className="form-label mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                         วันเวลาที่เริ่ม
                       </span>
@@ -1011,8 +1019,8 @@ export default function Home() {
                             Math.round(
                               (new Date(form.endDateTime) -
                                 new Date(form.startDateTime)) /
-                                60000
-                            ) || 60
+                                60000,
+                            ) || 60,
                           );
 
                           setForm((current) => ({
@@ -1021,11 +1029,11 @@ export default function Home() {
                             endDateTime: addMinutes(nextStart, duration),
                           }));
                         }}
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-3 text-[12px] outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-slate-900/80 dark:focus:ring-violet-400/15"
+                        className="block w-full min-w-0 max-w-full rounded-2xl border border-slate-200 bg-white px-3 py-3 text-[12px] outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-slate-900/80 dark:focus:ring-violet-400/15"
                       />
                     </label>
 
-                    <label className="block">
+                    <label className="block min-w-0">
                       <span className="form-label mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                         วันเวลาสิ้นสุด
                       </span>
@@ -1036,7 +1044,7 @@ export default function Home() {
                         onChange={(event) =>
                           updateForm("endDateTime", event.target.value)
                         }
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-3 text-[12px] outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-slate-900/80 dark:focus:ring-violet-400/15"
+                        className="block w-full min-w-0 max-w-full rounded-2xl border border-slate-200 bg-white px-3 py-3 text-[12px] outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-slate-900/80 dark:focus:ring-violet-400/15"
                       />
                     </label>
                   </div>
@@ -1049,7 +1057,8 @@ export default function Home() {
                         </span>
 
                         <p className="mt-1 text-[11px] leading-5 text-slate-500 dark:text-slate-400">
-                          รูปภาพ ใบนัด PDF หรือไฟล์อื่น ๆ สูงสุด 25 ไฟล์ต่อรายการ
+                          รูปภาพ ใบนัด PDF หรือไฟล์อื่น ๆ สูงสุด 25
+                          ไฟล์ต่อรายการ
                         </p>
                       </div>
 
@@ -1121,8 +1130,8 @@ export default function Home() {
                       notice.type === "success"
                         ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-400/15 dark:text-emerald-100"
                         : notice.type === "error"
-                        ? "bg-red-50 text-red-700 dark:bg-red-400/15 dark:text-red-100"
-                        : "bg-violet-50 text-violet-700 dark:bg-violet-400/15 dark:text-violet-100"
+                          ? "bg-red-50 text-red-700 dark:bg-red-400/15 dark:text-red-100"
+                          : "bg-violet-50 text-violet-700 dark:bg-violet-400/15 dark:text-violet-100"
                     }`}
                   >
                     {notice.message}
@@ -1157,7 +1166,8 @@ export default function Home() {
                       </p>
 
                       <p className="mt-1 text-[11px] leading-5 text-slate-500 dark:text-slate-400">
-                        สามารถกรอกฟอร์มแล้วกดบันทึกได้เลย หรือเพิ่มหลายรายการเข้าคิวก่อนก็ได้
+                        สามารถกรอกฟอร์มแล้วกดบันทึกได้เลย
+                        หรือเพิ่มหลายรายการเข้าคิวก่อนก็ได้
                       </p>
                     </div>
                   ) : (
@@ -1183,7 +1193,7 @@ export default function Home() {
                                   {
                                     dateStyle: "medium",
                                     timeStyle: "short",
-                                  }
+                                  },
                                 )}
                                 {" - "}
                                 {new Date(item.endDateTime).toLocaleTimeString(
@@ -1191,7 +1201,7 @@ export default function Home() {
                                   {
                                     hour: "2-digit",
                                     minute: "2-digit",
-                                  }
+                                  },
                                 )}
                               </p>
 
@@ -1237,8 +1247,8 @@ export default function Home() {
                 {isSaving
                   ? "กำลังบันทึก..."
                   : items.length
-                  ? `บันทึกทั้งหมด ${items.length} รายการ`
-                  : "บันทึกรายการนี้ลง Google Calendar"}
+                    ? `บันทึกทั้งหมด ${items.length} รายการ`
+                    : "บันทึกรายการนี้ลง Google Calendar"}
               </button>
 
               <p className="mt-2 text-center text-[10.5px] leading-5 text-slate-400 dark:text-slate-500">
@@ -1254,10 +1264,10 @@ export default function Home() {
                       cuteAlert.type === "success"
                         ? "bg-emerald-100 text-emerald-600 dark:bg-emerald-300/15 dark:text-emerald-100"
                         : cuteAlert.type === "error"
-                        ? "bg-red-100 text-red-600 dark:bg-red-300/15 dark:text-red-100"
-                        : cuteAlert.type === "loading"
-                        ? "bg-violet-100 text-violet-600 dark:bg-violet-300/15 dark:text-violet-100"
-                        : "bg-cyan-100 text-cyan-600 dark:bg-cyan-300/15 dark:text-cyan-100"
+                          ? "bg-red-100 text-red-600 dark:bg-red-300/15 dark:text-red-100"
+                          : cuteAlert.type === "loading"
+                            ? "bg-violet-100 text-violet-600 dark:bg-violet-300/15 dark:text-violet-100"
+                            : "bg-cyan-100 text-cyan-600 dark:bg-cyan-300/15 dark:text-cyan-100"
                     }`}
                   >
                     {cuteAlert.type === "success" && (
