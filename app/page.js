@@ -1003,8 +1003,8 @@ export default function Home() {
                     )}
                   </div>
 
-                  <div className="mb-3 grid min-w-0 grid-cols-1 gap-3">
-                    <label className="block min-w-0">
+                  <div className="mb-3 grid min-w-0 grid-cols-1 gap-3 overflow-hidden">
+                    <label className="block min-w-0 max-w-full overflow-hidden">
                       <span className="form-label mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                         วันเวลาที่เริ่ม
                       </span>
@@ -1029,11 +1029,15 @@ export default function Home() {
                             endDateTime: addMinutes(nextStart, duration),
                           }));
                         }}
-                        className="block w-full min-w-0 max-w-full rounded-2xl border border-slate-200 bg-white px-3 py-3 text-[12px] outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-slate-900/80 dark:focus:ring-violet-400/15"
+                        className="block w-full min-w-0 max-w-full appearance-none overflow-hidden rounded-2xl border border-slate-200 bg-white px-3 py-3 !text-[12px] leading-none outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-slate-900/80 dark:focus:ring-violet-400/15"
+                        style={{
+                          boxSizing: "border-box",
+                          WebkitAppearance: "none",
+                        }}
                       />
                     </label>
 
-                    <label className="block min-w-0">
+                    <label className="block min-w-0 max-w-full overflow-hidden">
                       <span className="form-label mb-1.5 block text-[12px] font-medium text-slate-600 dark:text-slate-300">
                         วันเวลาสิ้นสุด
                       </span>
@@ -1044,7 +1048,11 @@ export default function Home() {
                         onChange={(event) =>
                           updateForm("endDateTime", event.target.value)
                         }
-                        className="block w-full min-w-0 max-w-full rounded-2xl border border-slate-200 bg-white px-3 py-3 text-[12px] outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-slate-900/80 dark:focus:ring-violet-400/15"
+                        className="block w-full min-w-0 max-w-full appearance-none overflow-hidden rounded-2xl border border-slate-200 bg-white px-3 py-3 !text-[12px] leading-none outline-none transition focus:border-violet-300 focus:ring-4 focus:ring-violet-100 dark:border-white/10 dark:bg-slate-900/80 dark:focus:ring-violet-400/15"
+                        style={{
+                          boxSizing: "border-box",
+                          WebkitAppearance: "none",
+                        }}
                       />
                     </label>
                   </div>
