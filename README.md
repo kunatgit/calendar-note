@@ -8,8 +8,6 @@
 
 [เปิดใช้งาน Calendar Note](https://kunat-calendar-note.vercel.app)
 
-> หมายเหตุ: เปลี่ยนลิงก์ด้านบนเป็น URL จริงที่ได้จาก Vercel หลัง Deploy
-
 ## Tech Stack
 
 - Next.js latest
