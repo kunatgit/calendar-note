@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --font-kanit: "Kanit", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-kanit);
+  color: #241f33;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(251, 207, 232, 0.55), transparent 28%),
+    radial-gradient(circle at 82% 8%, rgba(191, 219, 254, 0.58), transparent 30%),
+    radial-gradient(circle at 45% 92%, rgba(187, 247, 208, 0.55), transparent 30%),
+    linear-gradient(135deg, #fff7fb 0%, #f8fbff 50%, #f7fff9 100%);
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.soft-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.22);
+  border-radius: 999px;
+}
+
+.floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+.floaty-delay {
+  animation: floaty 7s ease-in-out infinite;
+  animation-delay: -2.2s;
+}
+
+.floaty-slow {
+  animation: floaty 9s ease-in-out infinite;
+  animation-delay: -3.4s;
+}
+
+@keyframes floaty {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0) rotate(5deg);
+  }
+}
+
+.shimmer {
+  background-size: 220% 100%;
+  animation: shimmer 2.8s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 220% 0;
+  }
+  100% {
+    background-position: -220% 0;
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 1.45s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.88);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+.progress-glow {
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.32);
+}
+
+.phone-shadow {
+  box-shadow:
+    0 24px 80px rgba(42, 31, 64, 0.16),
+    0 10px 24px rgba(42, 31, 64, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.38);
+}
